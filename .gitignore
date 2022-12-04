@@ -1,0 +1,51 @@
+# compiled output
+/dist
+/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+src/contents/contents.controller.spec.ts
+src/contents/contents.controller.ts
+src/contents/contents.module.ts
+src/contents/contents.service.spec.ts
+src/contents/contents.service.ts
+src/contents/entities/content.entity.ts
+src/services/auth/auth.service.spec.ts
+src/services/auth/auth.service.ts
+src/users/users.controller.spec.ts
+src/users/users.controller.ts
+src/users/users.module.ts
+src/users/users.service.spec.ts
+src/users/users.service.ts
+src/users/dto/user-create.dto.ts
+src/users/dto/user-update.dto.ts
+src/users/entities/user.entity.ts
