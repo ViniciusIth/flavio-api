@@ -18,4 +18,5 @@ export interface UserDataSafe {
   name: string;
   email: string;
   phone: string;
+  birthdate: Date
 }

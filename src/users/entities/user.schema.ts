@@ -25,6 +25,9 @@ export class User implements Partial<IUser>{
   membership?: Date;
 
   @Prop()
+  aboutMe?: string;
+
+  @Prop()
   birthdate: Date;
 }
 

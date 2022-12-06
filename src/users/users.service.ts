@@ -1,10 +1,12 @@
 import { UserDataSafe } from './entities/user.entity';
 import { User, UserDocument } from './entities/user.schema';
-import { Injectable } from '@nestjs/common';
+import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UpdateUserDto } from './dto/user-update.dto';
 import { Model } from 'mongoose';
+import { createReadStream } from 'fs';
+import { join } from 'path';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +17,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const createdUser = new this.userModel(createUserDto);
-    createdUser.auth.role = 'User'
+    createdUser.auth = {role:'User'}
 
     return this._toUserDataSafe(await createdUser.save());
   }
@@ -38,6 +40,15 @@ export class UsersService {
 
   // #endregion
 
+  async getAboutMe(id: string) {
+    const aboutMe = (await this.userModel.findById(id).exec()).aboutMe
+    return aboutMe
+  }
+
+  async getProfileImage(id: string) {
+    const image = createReadStream(join(process.cwd(), 'public', 'pictures', id + '.png'))
+    return new StreamableFile(image)
+  }
 
   // #region auth functions
 
@@ -54,7 +65,7 @@ export class UsersService {
     return user.auth.role === 'Admin';
   }
 
-  async isMember(id: string) {
+  async isSubscriber(id: string) {
     const user = await this.userModel.findById(id).exec();
 
     if (user.membership) {
@@ -78,10 +89,9 @@ export class UsersService {
       name: user.name,
       email: user.email,
       phone: user.phone,
+      birthdate: user.birthdate
     }
   }
 
   // #endregion
 }
-
-// FIXME: Update won't alter data
