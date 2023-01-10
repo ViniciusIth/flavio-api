@@ -28,6 +28,12 @@ export class ArticlesService {
     throw new NotImplementedException();
   }
 
+  async findBySlug(slug: string) {
+    const article = this.articleModel.find({ slug: slug })
+
+    return await article.populate('author', ['id', 'name']).exec()
+  }
+
   async findOne(id: string) {
     const article = this.articleModel.findById(id);
 

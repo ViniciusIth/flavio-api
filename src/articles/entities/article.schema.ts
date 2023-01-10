@@ -15,12 +15,15 @@ export class Article {
   tittle: string;
 
   @Prop({ required: true })
+  slug: string;
+
+  @Prop({ required: true })
   content: string;
 
   @Prop({ default: false })
   hasVideo: boolean;
 
-  @Prop({ default: false })
+  @Prop({ default: true })
   isPremium: boolean;
 
   @Prop({ default: false })

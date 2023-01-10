@@ -30,6 +30,11 @@ export class ArticlesController {
     return this.articlesService.findFilter(+page);
   }
 
+  @Get('s/:slug')
+  findBySlug(@Param('slug') slug: string) {
+    return this.articlesService.findBySlug(slug);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.articlesService.findOne(id);
